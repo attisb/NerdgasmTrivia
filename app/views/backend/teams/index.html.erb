@@ -12,7 +12,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @teams.distinct.each do |team| %>
+					<% @teams.each do |team| %>
 					<tr>
 						<td width="100%"><%= link_to team.name, edit_backend_team_path(team) %></td>
 						<td style="text-align: center;"><%= team.scores.sum(:points) %></td>
