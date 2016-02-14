@@ -83,7 +83,7 @@ Rails.application.configure do
       address:              'sub4.mail.dreamhost.com',
       port:                 587,
       user_name:            'services@dequark.com',
-      password:             ENV['email_password'],
+      password:             ENV['EMAIL_PASSWORD'],
       authentication:       "plain",
       domain:               'nerdgasmtrivia.com',
       enable_starttls_auto: true
