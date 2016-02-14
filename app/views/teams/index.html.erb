@@ -42,7 +42,7 @@
 					<% if current_user.teams.count < ApplicationController::USER_MAX_TEAMS %>
 						<%= form_tag join_team_path do %>
 						<tr>
-							<td colspan="2"><input type="text" name="code" placeholder="enter team code"</td>
+							<td colspan="2"><input type="text" name="code" placeholder="enter team code" /></td>
 							<td><input type="submit" value="Join Team" /></td>
 						</tr>
 						<% end %>
