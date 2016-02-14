@@ -61,6 +61,7 @@
 							<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 						<% end %>
 					<% else %>
+						<strong>&nbsp;</strong>
 						<%= link_to "Create Account", new_user_registration_path %>
 						<%= link_to "Sign In", new_user_session_path %>
 					<% end %>
