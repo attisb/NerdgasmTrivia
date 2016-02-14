@@ -1,0 +1,15 @@
+<div class="grid">
+	<div class="row">
+		<div class="c12">
+			<h4>Event Management</h4>
+
+			<%= form_for(@event, :url => backend_events_path, :method => :post) do |f| %>
+			<%= render 'form', :f => f %>
+			<div class="row">
+				<div class="c12"><%= f.submit 'Create' %></div>
+			</div>
+			<% end %>
+
+		</div>
+	</div>
+</div>

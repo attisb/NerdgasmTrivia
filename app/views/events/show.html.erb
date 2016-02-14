@@ -1,0 +1,33 @@
+<div class="fourish">
+<img width=100% height=100 src="http://placehold.it/500x50" />
+</div>
+
+<!-- Sign In Form -->
+<div class="grid">
+	
+	<div class="row">
+		<div class="c8">
+			<h4>Event Details</h4>
+			<div class="row">
+				<div class="c12">
+					<h5><strong><%= @event.name %></strong></h5>
+					<p>on <%= @event.date_start.to_s(:date_only) %> from <%= @event.date_start.to_s(:time_only) %> to <%= @event.date_end.to_s(:time_only) %>
+					<%= simple_format @event.description %>
+				</div>
+			</div>
+		</div>
+
+		<div class="c4 h2push">
+			<h5>Teams</h5>
+			<ul class="no-pad no-bullet">
+				<% if @event.teams.count == 0 %>
+				<p class="small">No teams playing yet. This could because the event has not happened or this was just one sad event and we will never talk about it again like that one night at band camp.</p>
+				<% else %>
+					<% @event.teams.each do |team| %>
+					<li><%= team.name %></li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

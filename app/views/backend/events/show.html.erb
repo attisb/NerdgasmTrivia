@@ -1,0 +1,66 @@
+<div class="grid">
+	<div class="row">
+		<div class="c12">
+			<h4>Event Management</h4>
+			<h5><strong><%= @event.name %></strong></h5>
+			<h6><strong>Event Code: <%= @event.code%></strong></h6>
+
+			<%= form_tag backend_score_path, :method => "patch" do %>
+			<table id="mytable" class="table table-striped">
+				<thead>
+					<tr>
+						<td width="100%">Team Name</td>
+						<td>Current&nbsp;Score</td>
+						<td>Adjust&nbsp;By</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @event.teams.distinct.each do |team| %>
+					<tr>
+						<td class="u-full-width"><%= team.name %></td>
+						<td class="u-full-width"><%= team.scores.where(event_id: @event).current_score %></td>
+						<td><%= number_field_tag "teams[#{team.id}][]", 0, :style => 'width: 100px;'%></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+			<div class="row">
+				<div class="c12">
+					<a href="#" onClick="sortTable($('#mytable'),'desc');" class="button secondary full" />Sort</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="c12">
+					<input type="submit" value="Update Scores" />
+				</div>
+			</div>
+			
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+<!--<%= @event.name %><br/>
+<%= @event.code %><br/>
+
+
+ -->
+
+<script type="text/javascript">
+	function sortTable(table, order) {
+	    var asc   = order === 'asc',
+	        tbody = table.find('tbody');
+
+	    tbody.find('tr').sort(function(a, b) {
+	        if (asc) {
+	            return $('td:first', a).text().localeCompare($('td:first', b).text());
+	        } else {
+	            return $('td:first', b).text().localeCompare($('td:first', a).text());
+	        }
+	    }).appendTo(tbody);
+	}
+
+	
+</script>

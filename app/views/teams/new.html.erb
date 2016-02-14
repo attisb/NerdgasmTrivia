@@ -1,0 +1,22 @@
+<div class="fourish">
+<img width=100% height=100 src="http://placehold.it/500x50" />
+</div>
+
+<!-- Sign Up Form -->
+<div class="grid">
+	<div class="row">
+		<div class="c8">
+			<h4>Create a Team</h4>
+
+<%= form_for(@team, :url => teams_path, :method => :post) do |f| %>
+<%= render 'form', :f => f %>
+<%= f.submit %>
+<% end %>
+
+		</div>
+		<div class="c4 h4push">
+			<h5>Etiquette</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>

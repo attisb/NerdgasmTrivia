@@ -1,0 +1,24 @@
+<div class="grid">
+	<div class="row">
+		<div class="c8">
+			<h4>Team Management</h4>
+
+			<%= form_for(@team, :url => backend_team_path, :method => :patch) do |f| %>
+			<%= render 'form', :f => f %>
+			<div class="row">
+				<div class="c12"><%= f.submit 'Update' %></div>
+			</div>
+			<% end %>
+
+		</div>
+		
+		<div class="c4">
+			<h5>Players</h5>
+			<ul>
+				<% @team.users.each do |user| %>
+				<li><%= link_to "#{user.first_name} #{user.last_name}" %><br/><%= user.email %></li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

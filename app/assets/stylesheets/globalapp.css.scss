@@ -1,0 +1,182 @@
+
+/* Color Sets ------------------------------------------------------------------- */
+body {background: #fff image-url("page_bg.png");}
+input[type=submit], .button {background-color: #98a79B;}
+.button.secondary {background-color: #fff; color: #98a79B;}
+
+/* Form Errors ------------------------------------------------------------------- */
+#error_explanation {
+    background-color: #FFEBEE;
+    border: 1px solid #F44336;
+	border-radius: 7px;
+	overflow: hidden;
+}
+#error_explanation h6, #error_explanation h2 {
+	background: #F44336;
+	color: #fff;
+	margin-bottom: 5px;
+	padding: 5px 10px;
+	text-transform: uppercase;
+	font-size: 16px; line-height: 30px;
+}
+#error_explanation ul {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.field_with_errors input {border: 1px solid #F44336;}
+
+/* Navigations ------------------------------------------------------------------- */
+nav#mainnav {
+	background: #fff;
+	border-bottom: solid 1px #545B5E;
+	height: 46px;
+	padding: 11px 5px 11px;
+}
+nav#mainnav #logo {
+	background: url(http://placehold.it/100x24) no-repeat;
+	display: block;
+	height: 24px;
+	margin-right: 1em;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+	width: 100px;
+}
+nav#mainnav a, nav#mainnav strong, nav#mainnav span {
+	color: #000;
+	float: left;
+	padding-right: 1em;
+}
+.mainnav_btn {
+	background: #fff;
+	border: none;
+	color: #000;
+	display: none;
+	font-size: 25px;
+	float: right;
+	margin: -42px 7px;
+}
+
+nav#footnav {
+	background: #697e86;
+	border-top: 1px solid #545B5E;
+	color: #fff;
+	padding: 11px;
+	text-align: center;
+	font-size: .8em;
+}
+nav#footnav a {
+	color: #fff;
+	font-weight: bold;
+	margin-left: 1em;
+}
+
+.manage nav#mainnav {background: #000;}
+.manage nav#mainnav a, .manage nav#mainnav strong, .manage nav#mainnav span {color: #fff;}
+
+
+
+
+
+
+/* Hero Container ------------------------------------------------------------------- */
+#hero {
+	background: image-url("hero_splash.jpg") center center;
+	background-size: 100% auto;
+}
+#hero h5 {
+	background: rgba(0,0,0,.5);
+	color: #fff;
+	font-family: Helvetica;
+	font-size: 40px;
+	font-weight: bold;
+	letter-spacing: .1em;
+	line-height: 40px;
+	margin: 0;
+	/*padding-bottom: 20px;
+	padding-top: 14em;*/
+	padding-bottom: 150px;
+	padding-top: 150px;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+}
+
+
+@media(max-width:1100px) {
+	#hero h5 {
+		padding-bottom: 100px;
+		padding-top: 100px;
+	}
+}
+
+
+
+/* Pagination ------------------------------------------------------------------- */
+.pagination {
+  text-align: center;
+  padding: 1em;
+  cursor: default; }
+  .pagination a, .pagination span {
+    padding: 0.2em 0.3em; }
+  .pagination .disabled {
+    color: #aaaaaa; }
+  .pagination .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(255, 255, 255, 0.8) 1px 1px 1px; }
+  .pagination a {
+    text-decoration: none;
+    color: black; }
+    .pagination a:hover, .pagination a:focus {
+      text-decoration: underline; }
+
+
+/* Mobile Styles ------------------------------------------------------------------- */
+
+@media(max-width:1100px) {
+	nav#mainnav {overflow: hidden;}
+    nav#mainnav:active,
+    nav#mainnav:focus {
+        height: auto
+    }
+	nav#mainnav a, nav#mainnav strong, nav#mainnav span {
+		float: none;
+		display: block;
+		margin-bottom: 10px;
+	}
+	nav#mainnav strong {border-bottom: 1px dotted #bbb; margin-top: 20px;}
+	nav#mainnav .float-right {float: none;}
+    nav#mainnav div.container:before {
+        background: #fff;
+        border-bottom: 10px double #bbb;
+        border-top: 3px solid #bbb;
+        content: '';
+        float: right;
+        height: 4px;
+        position: relative;
+        right: 3px;
+        top: 4px;
+        width: 20px
+    }
+	.mainnav_btn {display: block;}
+	nav#footnav span {display: block;}	
+}
+
+/* Backend ----------------------------------------------------------------------- */
+body.manage {background: #000 image-url("page_bg_backend.png"); color: #fff;}
+body.manage table thead {color: #000;}
+body.manage h1, body.manage h2, body.manage h3, body.manage h4, body.manage h5, body.manage h6 {color: #bbb;}
+
+body.manage input[type=submit], body.manage button.form, body.manage .button {
+	box-shadow: 0px 1px 3px rgba(255,255,255,0.5);
+}
+

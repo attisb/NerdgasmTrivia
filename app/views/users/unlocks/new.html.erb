@@ -1,0 +1,37 @@
+<div class="fourish">
+<img width=100% height=100 src="http://placehold.it/500x50" />
+</div>
+
+<!-- Sign In Form -->
+<div class="grid">
+	
+	<div class="row">
+		<div class="c5">
+			<h4>Resend unlock instructions</h4>
+			<%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+			<%= devise_error_messages! %>
+			<div class="row">
+				<div class="c12">
+					<%= f.label :email %><br />
+					<%= f.email_field :email, autofocus: true %> 
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
+					<%= f.submit "Resend unlock instructions" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+
+		<div class="c7 h2push">
+			<h5>Doesn't it suck when that happens.</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p class="text-right">
+				<%= link_to 'Sign In', new_user_session_path, :class => 'button secondary' %>
+				<%= link_to 'Join Now', new_user_registration_path, :class => 'button secondary' %>
+			</p>
+		</div>
+	</div>
+</div>

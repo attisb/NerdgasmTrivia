@@ -1,0 +1,39 @@
+<div class="grid">
+	<div class="row">
+		<div class="c8">
+			<h4>Team Management</h4>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Points</td>
+						<td>Players</td>
+						<td>&nbsp;</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @teams.each do |team| %>
+					<tr>
+						<td width="100%"><%= link_to team.name, edit_backend_team_path(team) %></td>
+						<td style="text-align: center;"><%= team.scores.sum(:points) %></td>
+						<td style="text-align: center;"><%= team.users.count %></td>
+						<td><%= link_to 'Edit', edit_backend_team_path(team) %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<%= will_paginate @teams %>
+		</div>
+		
+		<div class="c4">
+			<div class="row">
+				<h5>Search</h5>
+				<p class="small">By team name</p>
+				<%= form_tag backend_teams_path, :method => :get do %>
+				<div class="c12"><input type="text" name="s" class="form-input" /></div>
+				<div class="c12"><input type="submit" value="Search" class="form-input" /></div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

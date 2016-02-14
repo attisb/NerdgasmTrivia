@@ -1,0 +1,62 @@
+<div class="fourish">
+<img width=100% height=100 src="http://placehold.it/500x50" />
+</div>
+
+<!-- Sign In Form -->
+<div class="grid">
+	
+	<div class="row">
+		<div class="c8">
+			<h4>Teams</h4>
+			<div class="row">
+				<div class="c12">
+					<table>
+						<thead>
+							<tr>
+								<td width="100%">Team Name</td>
+								<td>Players</td>
+								<td>Total&nbsp;Score</td>
+							</tr>
+						</thead>
+						<tbody>
+							<% @teams.each do |team| %>
+							<tr>
+								<td><%= link_to team.name, team_path(team) %></td>
+								<td class="text-center"><%= team.users.count %></td>
+								<td class="text-center"><%= team.sum_score %></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</table>
+					
+					<%= will_paginate @teams %>
+				</div>
+			</div>
+		</div>
+
+		<div class="c4 h2push">
+			<% if user_signed_in? %>
+			<h5>Create or Join Team</h5>
+			<table>
+				<tbody>
+					<% if current_user.teams.count < ApplicationController::USER_MAX_TEAMS %>
+						<%= form_tag join_team_path do %>
+						<tr>
+							<td colspan="2"><input type="text" name="code" placeholder="enter team code"</td>
+							<td><input type="submit" value="Join Team" /></td>
+						</tr>
+						<% end %>
+					<% end %>
+					<% if current_user.teams.count < ApplicationController::USER_MAX_CREATE_TEAMS %>
+					<tr><td colspan="3"><%= link_to 'Create a New Team', new_team_path, :class => 'button secondary full'%></td></tr>
+					<% end %>
+				</tbody>
+			</table>
+			<% end %>
+			
+			<h5>Team Rules</h5>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>
+

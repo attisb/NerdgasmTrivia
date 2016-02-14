@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  code: MyString
+  date_start: 2016-02-08 20:53:09
+  date_end: 2016-02-08 20:53:09
+  bonus: 1
+  visible: false
+  user_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  code: MyString
+  date_start: 2016-02-08 20:53:09
+  date_end: 2016-02-08 20:53:09
+  bonus: 1
+  visible: false
+  user_id: 1

@@ -1,0 +1,130 @@
+<div class="fourish">
+<img width=100% height=100 src="http://placehold.it/500x50" />
+</div>
+
+<!-- Sign Up Form -->
+<div class="grid">
+	<div class="row">
+		<div class="c5">
+			<h4>Your Account</h4>
+			<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+			<%= devise_error_messages! %>
+			<div class="row">
+				<div class="c12">
+				    <%= f.label :email %>
+				    <%= f.email_field :email, autofocus: true %>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
+				    <%= f.label :password %>
+				    <%= f.password_field :password, autocomplete: "off" %>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
+				    <%= f.label :password_confirmation %>
+				    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
+				    <%= f.label :first_name %>
+				    <%= f.text_field :first_name %>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
+				    <%= f.label :last_name %>
+				    <%= f.text_field :last_name %>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
+				    <%= f.label :description, 'Bio' %>
+				    <%= f.text_area :description, :placeholder => 'How to make a rum and coke. Step 1: Get rum. Step 2: Get coke. Step 3: Mix. If you messed it up at this point then you have problems.' %>
+				</div>
+			</div>
+			
+			<div class="row h3push">
+				<div class="c12">
+				    <%= f.label :current_password %>
+				    <%= f.password_field :current_password, :placeholder => "type your current password to confirm changes", autocomplete: "off" %>
+				</div>
+			</div>
+			
+			<div class="c12">
+			    <%= f.submit 'Create Account' %>
+			</div>
+			
+			<% end %>
+		</div>
+		
+		<div class="c7 h2push">
+			<h5>My Teams</h5>
+			<table>
+				<tbody>
+					<% current_user.teams.each do |team| %>
+					<tr>
+						<td><%= link_to team.name, team_path(team) %></td>
+						<td class="text-right"><%= team.scores.sum(:points) %></td>
+						<td class="text-right">
+							<% if team.user_id == current_user.id %>
+								<%= link_to 'Edit', edit_team_path(team) %> or
+								<%= link_to 'Leave', leave_team_path(team), data: { confirm: "Are you sure? You lose all points that you made while on this team!" } if team.users.map(&:id).include?(current_user.id) %>
+							<% else %>
+								<%= link_to 'Leave', leave_team_path(team), data: { confirm: "Are you sure? You lose all points that you made while on this team!" } if team.users.map(&:id).include?(current_user.id) %>
+							<% end %>
+						</td>
+					</tr>
+					<% end %>
+					<% if current_user.teams.count < ApplicationController::USER_MAX_TEAMS %>
+						<%= form_tag join_team_path do %>
+						<tr>
+							<td colspan="2"><input type="text" name="code" placeholder="enter team code"</td>
+							<td><input type="submit" value="Join Team" /></td>
+						</tr>
+						<% end %>
+					<% end %>
+					<% if current_user.teams.count < ApplicationController::USER_MAX_CREATE_TEAMS %>
+					<tr><td colspan="3"><%= link_to 'Create a New Team', new_team_path, :class => 'button secondary full'%></td></tr>
+					<% end %>
+				</tbody>
+			</table>
+
+
+			<h5>Latest Events Played</h5>
+			<table>
+				<tbody>
+					<% if @user.scores.count == 0 %>
+						<tr>
+							<td class="small">
+								<p>Looks like you haven't participated in any events. Well that is just a sad moment indeed, just like when Andy drove away. See what <%= link_to 'events', events_path %> coming up. Once your at the event just check in by typing in the event code and your all set to earn points and more!</p>
+							</td>
+						</tr>
+					<% else %>
+						<% @user.scores.limit(10).each do |score| %>
+						<tr>
+							<td><%= link_to score.event.name, event_path(score.event.id) %></td>
+							<td class="text-right"><%= score.event.date_start.to_s(:date_only) %></td>
+						</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- 
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+ -->

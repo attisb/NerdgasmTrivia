@@ -1,0 +1,49 @@
+<div class="fourish">
+<img width=100% height=100 src="http://placehold.it/500x50" />
+</div>
+
+<!-- Sign Up Form -->
+<div class="grid">
+	<div class="row">
+		<div class="c5">
+			<h4>Team Details</h4>
+			<h5><strong><%= @team.name %></strong></h5>
+			
+			<% if @team.users.map{|a| a.id}.include? current_user.id %>
+			<h6><strong>Team Code: </strong><%= @team.code %></h6>
+			<% end %>
+						
+			<%= simple_format @team.description %>
+		</div>
+
+		<div class="c7 h2push">
+			<h5>Stats</h5>
+			<table>
+				<tbody>
+					<tr>
+						<td>Creation Date</td>
+						<td class="text-right"><%= @team.created_at.to_s(:date_only)%></td>
+					</tr>
+					<tr>
+						<td>Points Accumulated</td>
+						<td class="text-right"><%= @team.sum_score %></td>
+					</tr>
+					<tr>
+						<td>Events Played</td>
+						<td class="text-right"><%= @team.scores.count(:event_id) %></td>
+					</tr>
+					<tr>
+						<td class="text-up">Team Members</td>
+						<td class="text-right">
+							<ul class="text-left">
+								<% @team.users.each do |user| %>
+								<li><%= user.first_name %> <%= user.last_name[0] %>.</li>
+								<% end %>
+							</ul>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,35 @@
+<%= render "shared/hero_block" %>
+
+<!-- Homepage Content -->
+<div class="grid">
+	<div class="row">		
+		<div class="c5">
+			<% if user_signed_in? %>
+				<% teams_array = current_user.teams.map { |team| [team.name, team.id] } %>
+				<% if teams_array.empty? %>
+				<p>In order to join an event you must be part of a team. Please visit <%= link_to 'your account', edit_user_registration_path %> page to join a team.</p>
+				<% else %>
+					<%= render "shared/form_join_event", :teams_array => teams_array %>
+				<% end %>
+			<% end %>
+
+			<!-- Upcoming Events -->
+			<h5>Upcoming Events</h5>
+			<ul class="no-pad no-bullet">
+				<% @events.each do |event| %>
+				<li>
+					<strong><%= link_to event.name, event_path(event) %></strong><br/>
+					<p class="no-pad"><%= event.date_start.to_s(:date_only) %> from <%= event.date_start.to_s(:time_only) %> to <%= event.date_end.to_s(:time_only) %></p>
+					<%= simple_format truncate(event.description, length: 200), :class => 'small' %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+
+		<div class="c7">
+			<h4>Entertaining Fun.</h4>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+</div>

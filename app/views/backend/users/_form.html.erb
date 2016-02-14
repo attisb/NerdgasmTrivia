@@ -1,0 +1,36 @@
+<% if @user.errors.any? %>
+<div id="error_explanation">
+  <h6><%= pluralize(@user.errors.count, "error") %> prohibited this team from being saved:</h6>
+
+  <ul>
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="row">
+	<div class="c12"><%= f.label :email %><%= f.text_field :email, :placeholder => 'Email' %></div>
+</div>
+<div class="row">
+	<div class="c6"><%= f.label :first_name %><%= f.text_field :first_name, :placeholder => 'First Name' %></div>
+	<div class="c6"><%= f.label :last_name %><%= f.text_field :last_name, :placeholder => 'Last Name' %></div>
+</div>
+<div class="row">
+	<div class="c12"><%= f.label :description %><%= f.text_area :description, :placeholder => 'Description' %></div>
+</div>
+
+<% if current_user.admin? %>
+<div class="row">
+	<div class="c6">
+		<%= f.check_box :admin %>
+		<%= f.label :admin %>
+	</div>
+
+	<div class="c6">
+		<%= f.check_box :host %>
+		<%= f.label :host %>
+	</div>
+</div>
+<% end %>

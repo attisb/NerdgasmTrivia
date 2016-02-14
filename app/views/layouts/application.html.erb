@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nerdgasm Trivia</title>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag    'application', {media: 'all', 'data-turbolinks-track' => true} %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<% if user_signed_in? && (current_user.admin? || current_user.host?) %>
+<body class="manage">
+<% else %>
+<body>
+<% end %>	
+
+		<% if notice || alert %>
+		<!-- Notifications -->
+		<div class="notification">
+			<% if alert %>
+			<div class="alert">
+				<strong><i class="fa fa-warning"></i> Error: </strong> <%= alert %>
+				<a href="#" class="close_not">Close</a>
+			</div>
+			<% elsif notice %>
+			<div class="done">
+				<strong><i class="fa fa-check"></i> Success: </strong> <%= notice %>
+				<a href="#" class="close_not">Close</a>
+			</div>
+			<% end %>
+		</div>
+		<% end %>
+
+
+
+	
+		<!-- Header -->
+		<nav id="mainnav" tabindex="-1" onclick="this.focus();">
+			<div class="container">
+				<%= link_to "Nerdgasm Trivia", root_path, :id => 'logo' %>
+				<%= link_to "Teams", teams_path %>
+				<%= link_to "Events", events_path %>
+				<%= link_to "Store", store_path %>
+				<%= link_to "Hire", hire_path %>
+				<div class="float-right">
+					<% if user_signed_in? %>
+						<% if current_user.admin? || current_user.host? %>
+							<strong>Manage</strong>
+							<span>Hi, <%= current_user.first_name %>!</span>
+							<%= link_to "Your Account", edit_user_registration_path %>
+							<%= link_to "Users", backend_users_path %>
+							<%= link_to "Teams", backend_teams_path %>
+							<%= link_to "Events Management", backend_events_path %>
+							<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+						<% else %>
+							<strong>&nbsp;</strong>
+							<span>Hi, <%= current_user.first_name %>!</span>
+							<%= link_to "Your Account", edit_user_registration_path %>
+							<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+						<% end %>
+					<% else %>
+						<%= link_to "Create Account", new_user_registration_path %>
+						<%= link_to "Sign In", new_user_session_path %>
+					<% end %>
+				</div>
+			</div>
+		</nav>
+		<button class="mainnav_btn">×</button>
+
+
+
+
+
+
+<!-- BEGIN PAGE CONTENT -->
+<%= yield %>
+<!-- END PAGE CONTENT -->
+
+
+		<!-- Footer -->
+		<nav id="footnav">
+			Copyright 2016 Nerdgasm
+			<span>
+				<%= link_to "Teams", teams_path %>
+				<%= link_to "Events", events_path %>
+				<%= link_to "Store", store_path %>
+				<%= link_to "Hire", hire_path %>
+			</span>
+		</nav>
+		
+		
+		
+		<!-- Facebook -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=300563900098341";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+</body>
+</html>
