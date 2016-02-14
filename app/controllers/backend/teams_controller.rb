@@ -7,7 +7,7 @@ class Backend::TeamsController < ApplicationController
       @teams = Team.where('name LIKE :search', search: params[:s]).joins(:scores).paginate(:page => params[:page]).order('scores.points desc')
       #@teams = Team.where('first_name LIKE :search', search: params[:s]).joins(:scores).paginate(:page => params[:page]).group('scores.team_id').order('scores.points desc')
     else
-      @teams = Team.joins(:scores).select("scores.points, team.id, team.name, sum(scores.points) as sum_score").group("teams.id").order("sum_score DESC")
+      @teams = Team.joins(:scores)select("teams.*, sum(scores.points) as average_rating").group("teams.id").order("average_rating DESC")
       #@teams = Team.joins(:scores).paginate(:page => params[:page]).group('scores.team_id').order('scores.points desc').all
       #@teams = Team.all.joins(:scores).paginate(:page => params[:page]).group('scores.team_id').order('scores.points desc')
     end
