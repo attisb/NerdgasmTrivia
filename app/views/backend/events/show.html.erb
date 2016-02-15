@@ -19,7 +19,7 @@
 					<tr>
 						<td class="u-full-width"><%= team.name %></td>
 						<td class="u-full-width"><%= team.scores.where(event_id: @event).current_score %></td>
-						<td><%= number_field_tag "teams[#{team.id}][]", 0, :style => 'width: 100px;',  :pattern => "\d*" %></td>
+						<td><%= telephone_field_tag "teams[#{team.id}][]", 0, :style => 'width: 100px;' %></td>
 					</tr>
 					<% end %>
 				</tbody>
