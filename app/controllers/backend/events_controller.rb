@@ -21,6 +21,9 @@ class Backend::EventsController < ApplicationController
   end
   
   def edit
+    unless current_user.id == @event.user_id || current_user.admin?
+      redirect_to backend_events_path, alert: 'Not allowed to modify event by someone else.'
+    end
   end
   
   def update

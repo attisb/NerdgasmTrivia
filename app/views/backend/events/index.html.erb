@@ -17,7 +17,7 @@
 						<td width="100%"><%= link_to event.name, backend_event_path(event) %></td>
 						<td class="text-align: center;"><%= event.scores.team_count %></td>
 						<td style="text-align: center;"><%= event.scores.player_count %></td>
-						<td><%= link_to "Edit", edit_backend_event_path(event) %>&nbsp;|&nbsp;<%= link_to 'Delete', backend_event_path(event), data: { confirm: "Are you sure? You lose all points that this event has made!" }, method: :delete %></td>
+						<td><% if current_user.admin? || current_user.id == event.user_id %><%= link_to "Edit", edit_backend_event_path(event) %>&nbsp;|&nbsp;<%= link_to 'Delete', backend_event_path(event), data: { confirm: "Are you sure? You lose all points that this event has made!" }, method: :delete %><% end %></td>
 					</tr>
 					<% end %>
 				</tbody>
