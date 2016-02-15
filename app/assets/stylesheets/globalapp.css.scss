@@ -4,6 +4,8 @@ body {background: #fff image-url("page_bg.png");}
 input[type=submit], .button {background-color: #98a79B;}
 .button.secondary {background-color: #fff; color: #98a79B;}
 
+.fourish {display: block; height: 100px; background: #000 image-url("flourish_1.png") top center;}
+
 /* Form Errors ------------------------------------------------------------------- */
 #error_explanation {
     background-color: #FFEBEE;
@@ -33,7 +35,7 @@ nav#mainnav {
 	padding: 11px 5px 11px;
 }
 nav#mainnav #logo {
-	background: url(http://placehold.it/100x24) no-repeat;
+	background: image-url("logo_white.png") no-repeat;
 	display: block;
 	height: 24px;
 	margin-right: 1em;
@@ -181,3 +183,7 @@ body.manage input[type=submit], body.manage button.form, body.manage .button {
 	box-shadow: 0px 1px 3px rgba(255,255,255,0.5);
 }
 
+
+body.manage nav#mainnav #logo {
+	background: image-url("logo_black.png") no-repeat;
+}
