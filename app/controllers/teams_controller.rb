@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
   
 
   def index
-    @teams = Team.where(visible: true).paginate(:page => params[:page]).joins(:scores)
+    @teams = Team.where(visible: true).paginate(:page => params[:page]).joins(:scores).paginate(:page => params[:page]).select("teams.*, sum(scores.points) as points").group("teams.id")
     #@teams = Team.where(visible: true).paginate(:page => params[:page]).joins(:scores).group('scores.team_id').order('scores.points desc')
     if @teams.empty?
       @teams = Team.where(visible: true).paginate(:page => params[:page])
