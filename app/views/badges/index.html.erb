@@ -8,7 +8,7 @@
 			<% @badges.each do |badge| %>
 				<% if badge.badge_type == 'scoreu' && badge.trigger <= user_points %>
 					<div class="galleryItem"><%= link_to image_tag(badge.bgraphic), badge_path(badge) %></div>
-				<% elsif badge.badge_type == 'scoretff' && badge.trigger <= team_scores %>
+				<% elsif badge.badge_type == 'scoret' && badge.trigger <= team_scores.sum_score %>
 					<div class="galleryItem"><%= link_to image_tag(badge.bgraphic), badge_path(badge) %></div>
 				<% elsif badge.badge_type == 'event' && badge.trigger <= event_played %>
 					<div class="galleryItem"><%= link_to image_tag(badge.bgraphic), badge_path(badge) %></div>
