@@ -50,9 +50,10 @@
 							<strong>Manage</strong>
 							<span>Hi, <%= current_user.first_name %>!</span>
 							<%= link_to "Your Account", edit_user_registration_path %>
+							<% if current_user.admin? %><%= link_to "Badges", backend_badges_path %><% end %>
 							<%= link_to "Users", backend_users_path %>
 							<%= link_to "Teams", backend_teams_path %>
-							<%= link_to "Events Management", backend_events_path %>
+							<%= link_to "Events", backend_events_path %>
 							<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
 						<% else %>
 							<strong>&nbsp;</strong>

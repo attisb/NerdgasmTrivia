@@ -1,0 +1,21 @@
+<% user_points = current_user.scores.sum(:points) %>
+<% event_played = current_user.scores.count %>
+<% user_teams = current_user.teams.count %>
+<% team_scores = current_user.teams.sort_by{|e| e[:sum_score]}.first.sum_score %>
+<div class="grid">
+	<div class="row">
+		<div class="c12">
+			<% @badges.each do |badge| %>
+				<% if badge.badge_type == 'scoreu' && badge.trigger <= user_points %>
+					<div class="galleryItem"><%= link_to image_tag(badge.bgraphic), badge_path(badge) %></div>
+				<% elsif badge.badge_type == 'scoret' && badge.trigger <= team_scores %>
+					<div class="galleryItem"><%= link_to image_tag(badge.bgraphic), badge_path(badge) %></div>
+				<% elsif badge.badge_type == 'event' && badge.trigger <= event_played %>
+					<div class="galleryItem"><%= link_to image_tag(badge.bgraphic), badge_path(badge) %></div>
+				<% else %>
+					<div class="galleryItem"><%= image_tag('/i/badge_locked.png') %></div>
+				<% end %>
+			<% end %>
+		</div>
+	</div>
+</div>

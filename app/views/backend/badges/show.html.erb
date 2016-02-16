@@ -1,0 +1,14 @@
+<div class="grid">
+	<div class="row">
+		<div class="c7">
+			<h4>Badge Details</h4>
+			<h5><strong><%= @badge.name %></strong></h5>
+									
+			<%= simple_format @badge.description %>
+		</div>
+
+		<div class="c5 h2push">
+			<%= image_tag @badge.bgraphic, :width => "100%" %>
+		</div>
+	</div>
+</div>

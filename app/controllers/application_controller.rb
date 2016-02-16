@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   USER_MAX_TEAMS = 6
   USER_MAX_CREATE_TEAMS = 5
   TEAM_MAX_MEMBERS = 6
+  BADGE_TYPES = [
+    ["Events Played", "event"],
+    ["User Score", "scoreu"],
+    ["Team Score", "scoret"],
+    ["Teams Joined", "teamj"]
+  ]
 
   protected
     def configure_permitted_parameters
@@ -18,7 +24,7 @@ class ApplicationController < ActionController::Base
       if authenticate_user! && (current_user.admin? || current_user.host?)
         true
       else
-        redirect_to root_path, alert: 'No access'
+        redirect_to root_path
       end
     end
     

@@ -1,0 +1,33 @@
+<div class="grid">
+	<div class="row">
+		<div class="c8">
+			<h4>Badge Management</h4>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<td>Name</td>
+						<td>Type</td>
+						<td>Trigger</td>
+						<td>Options</td>
+					</tr>
+				</thead>
+				<tbody>
+					<% @badges.each do |badge| %>
+					<tr>
+						<td width="100%"><%= link_to badge.name, backend_badge_path(badge) %></td>
+						<td class="text-align: center;"><%= badge.badge_type.capitalize %></td>
+						<td style="text-align: center;"><%= badge.trigger %></td>
+						<td><% if current_user.admin? %><%= link_to "Edit", edit_backend_badge_path(badge) %>&nbsp;|&nbsp;<%= link_to 'Delete', backend_badge_path(badge), data: { confirm: "Are you sure?" }, method: :delete %><% end %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="c4">
+			<h5>Create Badge</h5>
+			<p class="small">Make sure you have the graphics created as you will need them.</p>
+			<%= link_to 'Create a New Badge', new_backend_badge_path, :class => 'button full'%>
+		</div>
+	</div>
+</div>

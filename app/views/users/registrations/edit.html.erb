@@ -96,6 +96,15 @@
 			</table>
 
 
+			<h5>My Badges</h5>
+			<% @badges_userscore.each do |badge| %>
+			<%= link_to image_tag(badge.bgraphic, :width => 100), badge_path(badge) %>
+			<% end %>
+			<% @badges_teamscore.each do |badge| %>
+			<%= link_to image_tag(badge.bgraphic, :width => 100), badge_path(badge) %>
+			<% end %>
+			<%= link_to 'See All Badges', badges_path, :class => 'button full' %><br/>
+
 			<h5>Latest Events Played</h5>
 			<table>
 				<tbody>

@@ -1,0 +1,30 @@
+  <% if @badge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@badge.errors.count, "error") %> prohibited this badge from being saved:</h2>
+
+      <ul>
+      <% @badge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="row">
+	<div class="c12"><%= f.label :name %><%= f.text_field :name, :placeholder => 'Name' %></div>
+</div>
+
+<div class="row">
+	<div class="c12"><%= f.label :description %><%= f.text_area :description, :placeholder => 'Description' %></div>
+</div>
+
+<div class="row">
+	<div class="c6"><%= f.label :badge_type %><%= f.select :badge_type, ApplicationController::BADGE_TYPES %></div>
+	<div class="c6"><%= f.label :trigger %><%= f.text_field :trigger, :placeholder => 'Trigger' %></div>
+</div>
+
+<div class="row">
+	<div class="c12"><%= f.label :bgraphic, 'Graphic' %><%= f.file_field :bgraphic, :placeholder => 'choose graphic' %></div>
+</div>
+

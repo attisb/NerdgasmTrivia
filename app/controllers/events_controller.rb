@@ -13,17 +13,17 @@ class EventsController < ApplicationController
     user = Score.find_by(event_id: event.id, user_id: current_user.id) unless event.nil?
     if user_signed_in? && (!current_user.admin? || !current_user.host?)
       if event.nil?
-        redirect_to root_path, alert: "Can't find the event"
+        redirect_to root_path, alert: "Sorry we can't find that event."
       else
         if user.nil?
           Score.find_or_create_by(event_id: event.id, user_id: current_user.id, team_id: params[:team], points: event.bonus)
-          redirect_to root_path, notice: "Joined event"
+          redirect_to root_path, notice: "Awesome! You have successfully joined the event."
         else
-          redirect_to root_path, alert: "Already playing this event"
+          redirect_to root_path, alert: "Ouch! You are already playing at this event."
         end
       end
     else
-      redirect_to root_path, alert: "Not allowed to join events"
+      redirect_to root_path, alert: "Sorry you're not allowed to join this event."
     end
   end
   

@@ -175,6 +175,57 @@ nav#footnav a {
 	nav#footnav span {display: block;}	
 }
 
+
+/* Badges ----------------------------------------------------------------------- */
+.galleryItem {
+	width: 16%;
+	margin:  2%;
+	float: left;
+}
+
+.galleryItem img {
+	max-width: 100%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+@media only screen and (max-width : 940px),
+only screen and (max-device-width : 940px){
+	.galleryItem {width: 21%;}
+}
+
+@media only screen and (max-width : 720px),
+only screen and (max-device-width : 720px){
+	.galleryItem {width: 29.33333%;}
+}
+
+@media only screen and (max-width : 530px),
+only screen and (max-device-width : 530px){
+	.galleryItem {width: 46%;}
+}
+
+@media only screen and (max-width : 320px),
+only screen and (max-device-width : 320px){
+	.galleryItem {width: 96%;}
+	.galleryItem img {width: 96%;}
+}
+
+/* Random ----------------------------------------------------------------------- */
+.ytcontainer {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+.ytvideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 /* Backend ----------------------------------------------------------------------- */
 body.manage {background: #000 image-url("page_bg_backend.png"); color: #fff;}
 body.manage table thead {color: #000;}

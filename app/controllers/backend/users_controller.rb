@@ -4,7 +4,7 @@ class Backend::UsersController < ApplicationController
 
   def index
     if params[:s]
-      @basic_users = User.where(admin: false, host: false).where('first_name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(first_name: :asc)
+      @basic_users = User.where(admin: false, host: false).where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(first_name: :asc)
     else      
       @basic_users = User.where(admin: false, host: false).paginate(:page => params[:page]).order(first_name: :asc)
     end
