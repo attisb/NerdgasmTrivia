@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :backend do
     resources :events, :badges
-    resources :teams, :only => [:index, :show, :edit, :update]
+    resources :teams, :only => [:index, :show, :edit, :update, :destroy]
     resources :users, :only => [:index, :show, :edit, :update, :destroy]
     resources :scores, :only => [:update]
   end

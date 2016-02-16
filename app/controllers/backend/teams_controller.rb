@@ -27,6 +27,15 @@ class Backend::TeamsController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    scores = Score.where(team_id: @team.id)
+    scores.destroy_all
+    @team.destroy
+    redirect_to teams_path, notice: "Yay! The team was deleted from the system."
+  end
+
+
     
   private
     def set_team
