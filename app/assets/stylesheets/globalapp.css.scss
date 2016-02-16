@@ -225,6 +225,7 @@ only screen and (max-device-width : 320px){
     width: 100%;
     height: 100%;
 }
+.full-image {width: 100%;}
 
 /* Backend ----------------------------------------------------------------------- */
 body.manage {background: #000 image-url("page_bg_backend.png"); color: #fff;}

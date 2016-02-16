@@ -9,6 +9,13 @@
 			<%= devise_error_messages! %>
 			<div class="row">
 				<div class="c12">
+					<%= image_tag avatar_url(@user), :class => 'full-image' %>
+					<a href="http://gravatar.com" class="button full">Change Avatar</a>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="c12">
 				    <%= f.label :email %>
 				    <%= f.email_field :email, autofocus: true %>
 				</div>
@@ -57,7 +64,7 @@
 			</div>
 			
 			<div class="c12">
-			    <%= f.submit 'Create Account' %>
+			    <%= f.submit 'Update Account' %>
 			</div>
 			
 			<% end %>

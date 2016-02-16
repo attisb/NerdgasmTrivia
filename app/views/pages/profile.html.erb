@@ -1,0 +1,64 @@
+<div class="fourish"></div>
+
+<!-- Sign Up Form -->
+<div class="grid">
+	<div class="row">
+		<div class="c5">
+			<h4>Profile</h4>
+			<div class="row">
+				<div class="c12">
+					<%= image_tag avatar_url(@user), :class => 'full-image' %>
+					
+					<ul class="no-pad no-bullet">
+						<li><h4><%= @user.first_name %></h4></li>
+						<li><%= simple_format @user.description %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="c7 h2push">
+			<h5>My Teams</h5>
+			<table>
+				<tbody>
+					<% @user.teams.each do |team| %>
+					<tr>
+						<td><%= link_to team.name, team_path(team) %></td>
+						<td class="text-right"><%= team.scores.sum(:points) %></td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+
+
+			<h5>My Badges</h5>
+			<% @badges_userscore.each do |badge| %>
+			<%= link_to image_tag(badge.bgraphic, :width => 100), badge_path(badge) %>
+			<% end %>
+			<% @badges_teamscore.each do |badge| %>
+			<%= link_to image_tag(badge.bgraphic, :width => 100), badge_path(badge) %>
+			<% end %>
+			<br/><br/>
+
+			<h5>Latest Events Played</h5>
+			<table>
+				<tbody>
+					<% if @user.scores.count == 0 %>
+						<tr>
+							<td class="small">
+								<p>Looks like you haven't participated in any events. Well that is just a sad moment indeed, just like when Andy drove away. See what <%= link_to 'events', events_path %> coming up. Once your at the event just check in by typing in the event code and your all set to earn points and more!</p>
+							</td>
+						</tr>
+					<% else %>
+						<% @user.scores.limit(10).each do |score| %>
+						<tr>
+							<td><%= link_to score.event.name, event_path(score.event.id) %></td>
+							<td class="text-right"><%= score.event.date_start.to_s(:date_only) %></td>
+						</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

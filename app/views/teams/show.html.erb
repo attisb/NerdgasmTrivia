@@ -35,7 +35,7 @@
 						<td class="text-right">
 							<ul class="text-left">
 								<% @team.users.each do |user| %>
-								<li><%= user.first_name %> <%= user.last_name[0] %>.</li>
+								<li><%= link_to "#{user.first_name} #{user.last_name[0]}", profile_path(user) %>.</li>
 								<% end %>
 							</ul>
 						</td>

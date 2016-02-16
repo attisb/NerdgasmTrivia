@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   post '/join/event', to: 'events#join'
   #get '/leave/event/:id', to: 'events#leave', as: 'leave_event'
 
+  get '/profile/:id', to: 'pages#profile', as: 'profile'
   get '/store', to: 'pages#store', as: 'store'
   get '/hire', to: 'pages#hire', as: 'hire'
 

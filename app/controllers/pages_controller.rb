@@ -8,4 +8,10 @@ class PagesController < ApplicationController
   
   def hire
   end
+  
+  def profile
+    @user = User.find(params[:id])
+    set_badge_arrays
+  end
+  
 end

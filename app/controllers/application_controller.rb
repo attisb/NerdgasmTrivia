@@ -28,4 +28,9 @@ class ApplicationController < ActionController::Base
       end
     end
     
+    def set_badge_arrays
+      @badges_userscore = Badge.where(badge_type: 'scoreu').where("trigger <= ?", @user.scores.sum(:points))
+      @badges_teamscore = Badge.where(badge_type: 'event').where("trigger <= ?", @user.scores.count)
+    end
+    
 end
