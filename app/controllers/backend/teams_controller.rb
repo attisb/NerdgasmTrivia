@@ -4,16 +4,14 @@ class Backend::TeamsController < ApplicationController
 
   def index
     if params[:s]
-      @teams = Team.where('name LIKE :search', search: params[:s]).joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
-      #@teams = Team.where('first_name LIKE :search', search: params[:s]).joins(:scores).paginate(:page => params[:page]).group('scores.team_id').order('scores.points desc')
+      #@teams = Team.where('name LIKE :search', search: params[:s]).joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
+      @teams = Team.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(name: :desc)
     else
-      @teams = Team.joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
-      #@teams = Team.joins(:scores).paginate(:page => params[:page]).select("teams.*, sum(scores.points) as points").group("teams.id")
-      #@teams = Team.joins(:scores).paginate(:page => params[:page]).group('scores.team_id').order('scores.points desc').all
-      #@teams = Team.all.joins(:scores).paginate(:page => params[:page]).group('scores.team_id').order('scores.points desc')
+      #@teams = Team.joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
+      @teams = Team.paginate(:page => params[:page]).order(name: :desc)
     end
     if @teams.empty?
-      @teams = Team.where(visible: true).paginate(:page => params[:page])
+      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(name: :desc)
     end
   end
   
