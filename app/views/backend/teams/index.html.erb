@@ -8,6 +8,7 @@
 						<td>Name</td>
 						<td>Points</td>
 						<td>Players</td>
+						<td>Score</td>
 						<td>&nbsp;</td>
 					</tr>
 				</thead>
@@ -17,6 +18,7 @@
 						<td width="100%"><%= link_to team.name, edit_backend_team_path(team) %></td>
 						<td style="text-align: center;"><%= team.scores.sum(:points) %></td>
 						<td style="text-align: center;"><%= team.users.count %></td>
+						<td style="text-align: center;"><%= team.score %></td>
 						<td><%= link_to 'Edit', edit_backend_team_path(team) %>&nbsp;|&nbsp;<%= link_to 'Delete', backend_team_path(team), data: { confirm: "Are you sure? You lose all points that this event has made!" }, method: :delete %></td>
 					</tr>
 					<% end %>
@@ -33,6 +35,10 @@
 				<div class="c12"><input type="text" name="s" class="form-input" /></div>
 				<div class="c12"><input type="submit" value="Search" class="form-input" /></div>
 				<% end %>
+
+				<h5>Update Team Scores</h5>
+				<p>Clicking this button will update all scores for teams.</p>
+				<p><%= link_to "Update Team Scores", backend_update_scores_path, :class => "button full secondary" %></p>
 			</div>
 		</div>
 	</div>

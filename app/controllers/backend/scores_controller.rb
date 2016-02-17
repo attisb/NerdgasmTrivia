@@ -5,7 +5,7 @@ class Backend::ScoresController < ApplicationController
     scores = params[:teams]
     
     scores.each do |team, update_score|
-      players = Score.where(team_id: team)
+      players = Score.where(team_id: team, event_id: params[:event])
       players.each do |player|
         player.points += update_score[0].to_i
         player.save

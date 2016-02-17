@@ -18,6 +18,7 @@ class Team < ActiveRecord::Base
 
   def set_default_values
     self.visible ||= true
+    self.score ||= 0
   end
   
   def sum_score

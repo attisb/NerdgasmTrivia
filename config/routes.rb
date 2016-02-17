@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   get '/store', to: 'pages#store', as: 'store'
   get '/hire', to: 'pages#hire', as: 'hire'
 
+  get '/backend/update_scores', to: 'backend/teams#update_scores', as: 'backend_update_scores'
+
   root to: "pages#index"
 end

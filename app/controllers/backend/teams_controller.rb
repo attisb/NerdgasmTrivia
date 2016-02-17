@@ -5,13 +5,13 @@ class Backend::TeamsController < ApplicationController
   def index
     if params[:s]
       #@teams = Team.where('name LIKE :search', search: params[:s]).joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
-      @teams = Team.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(name: :desc)
+      @teams = Team.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(score: :desc)
     else
       #@teams = Team.joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
-      @teams = Team.paginate(:page => params[:page]).order(name: :desc)
+      @teams = Team.paginate(:page => params[:page]).order(score: :desc)
     end
     if @teams.empty?
-      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(name: :desc)
+      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)
     end
   end
   
@@ -33,6 +33,14 @@ class Backend::TeamsController < ApplicationController
     redirect_to teams_path, notice: "Yay! The team was deleted from the system."
   end
 
+
+  def update_scores
+    teams = Team.all
+    teams.each do |team|
+      team.update_attribute(:score, team.sum_score)
+    end
+    redirect_to backend_teams_path, notice: 'Updated scores.'
+  end
 
     
   private

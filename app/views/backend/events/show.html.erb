@@ -6,6 +6,7 @@
 			<h6><strong>Event Code: <%= @event.code%></strong></h6>
 
 			<%= form_tag backend_score_path, :method => "patch" do %>
+			<input type="hidden" name="event" value="<%= @event.id -%>" />
 			<table id="mytable" class="table table-striped">
 				<thead>
 					<tr>
