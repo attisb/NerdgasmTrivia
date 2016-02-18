@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="c7 h2push">
-			<% if user_signed_in? && @team.users.map{|a| a.id}.include? current_user.id %>
+			<% if user_signed_in? && (@team.users.map{|a| a.id}.include? current_user.id) %>
 			<h3><strong>Team Code</strong><br/><%= @team.code %></h3>
 			<% end %>
 
