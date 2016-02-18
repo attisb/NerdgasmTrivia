@@ -8,7 +8,7 @@ class Backend::EventsController < ApplicationController
   
   def new
     @event = Event.new(bonus: 0)
-		@hosts = User.where(host: true).map { |user| [user.first_name, user.id] }
+		@hosts = User.where(host: true).map { |user| ["#{user.first_name} #{user.last_name}", user.id] }
   end
   
   def create
@@ -50,7 +50,7 @@ class Backend::EventsController < ApplicationController
   private
     def set_event
       @event = Event.find(params[:id])
-			@hosts = User.where(host: true).map { |user| [user.first_name, user.id] }
+  		@hosts = User.where(host: true).map { |user| ["#{user.first_name} #{user.last_name}", user.id] }
     end
 
     def event_params
