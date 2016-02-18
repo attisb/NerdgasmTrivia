@@ -5,10 +5,20 @@ class TeamsController < ApplicationController
   
 
   def index
+    if params[:s]
+      @teams = Team.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(score: :desc)
+    else
+      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)
+    end
+    if @teams.empty?
+      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)
+    end
+
+
     #@teams = Team.where(visible: true).paginate(:page => params[:page]).joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
     #@teams = Team.where(visible: true).paginate(:page => params[:page]).joins(:scores).group('scores.team_id').order('scores.points desc')
     #if @teams.empty?
-      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)
+      #@teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)
       #end
   end
   

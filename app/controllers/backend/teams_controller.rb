@@ -8,7 +8,7 @@ class Backend::TeamsController < ApplicationController
       @teams = Team.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(score: :desc)
     else
       #@teams = Team.joins(:scores).paginate(:page => params[:page]).select("teams.*, SUM(scores.points) as points").group("teams.id").order('points desc')
-      @teams = Team.paginate(:page => params[:page]).order(score: :desc)
+      @teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)
     end
     if @teams.empty?
       @teams = Team.where(visible: true).paginate(:page => params[:page]).order(score: :desc)

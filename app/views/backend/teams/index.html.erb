@@ -16,7 +16,6 @@
 					<% @teams.each do |team| %>
 					<tr>
 						<td width="100%"><%= link_to team.name, edit_backend_team_path(team) %></td>
-						<td style="text-align: center;"><%= team.scores.sum(:points) %></td>
 						<td style="text-align: center;"><%= team.users.count %></td>
 						<td style="text-align: center;"><%= team.score %></td>
 						<td><%= link_to 'Edit', edit_backend_team_path(team) %>&nbsp;|&nbsp;<%= link_to 'Delete', backend_team_path(team), data: { confirm: "Are you sure? You lose all points that this event has made!" }, method: :delete %></td>

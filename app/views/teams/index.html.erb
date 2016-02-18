@@ -21,7 +21,7 @@
 							<tr>
 								<td><%= link_to team.name, team_path(team) %></td>
 								<td class="text-center"><%= team.users.count %></td>
-								<td class="text-center"><%= team.sum_score %></td>
+								<td class="text-center"><%= team.score %></td>
 							</tr>
 							<% end %>
 						</tbody>
@@ -33,6 +33,13 @@
 		</div>
 
 		<div class="c4 h2push">
+			<h5>Search</h5>
+			<p class="small">By team name</p>
+			<%= form_tag teams_path, :method => :get do %>
+			<div class="c12"><input type="text" name="s" class="form-input" /></div>
+			<div class="c12"><input type="submit" value="Search" class="form-input" /></div>
+			<% end %>
+
 			<% if user_signed_in? %>
 			<h5>Create or Join Team</h5>
 			<table>
