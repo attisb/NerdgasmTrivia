@@ -8,6 +8,7 @@ class Backend::EventsController < ApplicationController
   
   def new
     @event = Event.new(bonus: 0)
+		@hosts = User.where(host: true).map { |user| [user.first_name, user.id] }
   end
   
   def create
