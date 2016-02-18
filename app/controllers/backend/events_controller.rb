@@ -49,6 +49,7 @@ class Backend::EventsController < ApplicationController
   private
     def set_event
       @event = Event.find(params[:id])
+			@hosts = User.where(host: true).map { |user| [user.first_name, user.id] }
     end
 
     def event_params

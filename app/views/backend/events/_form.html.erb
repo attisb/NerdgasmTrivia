@@ -24,6 +24,7 @@
 </div>
 
 <div class="row">
-	<div class="c12"><%= f.label :bonus, 'Bonus Points' %><%= f.number_field :bonus, :placeholder => 'Bonus Points' %></div>
+	<div class="c6"><%= f.label :bonus, 'Bonus Points' %><%= f.number_field :bonus, :placeholder => 'Bonus Points' %></div>
+	<div class="c6"><%= f.label :user_id, 'Hosted By' %><%= f.select :user_id, @hosts %></div>
 </div>
 
