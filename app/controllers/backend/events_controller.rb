@@ -3,7 +3,13 @@ class Backend::EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all.paginate(:page => params[:page])
+    if params[:s]
+      @events = Event.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page])
+    else
+      @events = Event.where("date_start > ?", Time.now.beginning_of_day).paginate(:page => params[:page])
+    end
+
+    @past_events = Event.where("date_start < ?", Time.now.beginning_of_day).limit(5)
   end
   
   def new
