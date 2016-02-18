@@ -80,13 +80,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { :host => '192.241.163.125' }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      :address =>'sub4.mail.dreamhost.com',
-      :port => 587,
-      :user_name => 'services@dequark.com',
-      :password => Rails.application.secrets.EMAIL_PASSWORD,
-      :authentication => "plain",
-      :domain => 'nerdgasmtrivia.com',
-      :enable_starttls_auto => true
+      address: 'sub4.mail.dreamhost.com',
+      port:  587,
+      user_name: 'services@dequark.com',
+      password: Rails.application.secrets.EMAIL_PASSWORD,
+      authentication: :plain,
+      domain: 'nerdgasmtrivia.com',
+      enable_starttls_auto: true
     }
   
 end
