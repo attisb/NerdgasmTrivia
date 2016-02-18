@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   end
   
   def hire
-    @message = Message.new
+    @message = Contact.new
   end
   
   def profile
