@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   get '/backend/update_scores', to: 'backend/teams#update_scores', as: 'backend_update_scores'
 
-  get 'contact', to: 'contacts#new', as: 'contact'
+  get 'contact', to: 'pages#hire', as: 'contact'
   post 'contact', to: 'contacts#create'
   
   root to: "pages#index"
