@@ -85,7 +85,7 @@ Rails.application.configure do
       user_name: 'services@dequark.com',
       password: Rails.application.secrets.EMAIL_PASSWORD,
       authentication: :plain,
-      #domain: 'nerdgasmtrivia.com',
+      domain: 'nerdgasmtrivia.com',
       enable_starttls_auto: true
     }
   

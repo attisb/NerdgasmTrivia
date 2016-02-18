@@ -8,10 +8,9 @@ class ContactsController < ApplicationController
     
       if @message.valid?
         ContactMailer.new_message(@message).deliver
-        redirect_to contact_path, notice: "Your messages has been sent."
+        redirect_to hire_path, notice: "Your messages has been sent."
       else
-        flash[:alert] = "An error occurred while delivering this message."
-        render :new
+        redirect_to hire_path, alert: "An error occurred while delivering this message."
       end
     end
 
