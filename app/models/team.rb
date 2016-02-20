@@ -24,5 +24,9 @@ class Team < ActiveRecord::Base
   def sum_score
     Score.where(team_id: self.id).sum(:points)
   end
+  
+  def to_param
+    [id, name.parameterize].join("-")
+  end
 
 end

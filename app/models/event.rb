@@ -19,4 +19,8 @@ class Event < ActiveRecord::Base
     self.visible ||= true
   end
 
+  def to_param
+    [id, name.parameterize].join("-")
+  end
+
 end
