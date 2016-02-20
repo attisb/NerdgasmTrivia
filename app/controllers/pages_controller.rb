@@ -15,4 +15,7 @@ class PagesController < ApplicationController
     set_badge_arrays
   end
   
+  def changelog
+  end
+  
 end

@@ -7,6 +7,8 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', {media: 'all', 'data-turbolinks-track' => false} %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+  <link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+  <link rel="apple-touch-icon" href="apple-icon.png"/>
   <%= csrf_meta_tags %>
 </head>
 
@@ -89,6 +91,7 @@
 				<%= link_to "Events", events_path %>
 				<%= link_to "Store", store_path %>
 				<%= link_to "Hire", hire_path %>
+				<%= link_to "Change Log", changelog_path %>
 			</span>
 		</nav>
 		

@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/profile/:id', to: 'pages#profile', as: 'profile'
   get '/store', to: 'pages#store', as: 'store'
   get '/hire', to: 'pages#hire', as: 'hire'
+  get '/changelog', to: 'pages#changelog', as: 'changelog'
 
   get '/backend/update_scores', to: 'backend/teams#update_scores', as: 'backend_update_scores'
 
