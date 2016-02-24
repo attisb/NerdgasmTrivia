@@ -21,7 +21,7 @@
 				<% if @event.teams.count == 0 %>
 				<p class="small">No teams playing yet. This could because the event has not happened or this was just one sad event and we will never talk about it again like that one night at band camp.</p>
 				<% else %>
-					<% @event.teams.each do |team| %>
+					<% @event.teams.distinct.each do |team| %>
 					<li><%= link_to team.name, team_path(team) %></li>
 					<% end %>
 				<% end %>
