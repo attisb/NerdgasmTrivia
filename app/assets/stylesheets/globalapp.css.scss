@@ -120,7 +120,10 @@ nav#footnav a {
 .pagination {
   text-align: center;
   padding: 1em;
-  cursor: default; }
+  cursor: default;
+  background: #fff;
+  border-top: #545B5E;
+ }
   .pagination a, .pagination span {
     padding: 0.2em 0.3em; }
   .pagination .disabled {
