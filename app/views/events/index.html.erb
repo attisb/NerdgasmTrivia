@@ -31,6 +31,16 @@
 		</div>
 
 		<div class="c4 h2push">
+			<% if user_signed_in? %>
+				<% teams_array = current_user.teams.map { |team| [team.name, team.id] } %>
+				<% if teams_array.empty? %>
+				<p>In order to join an event you must be part of a team. Please visit <%= link_to 'your account', edit_user_registration_path %> page to join a team.</p>
+				<% else %>
+					<%= render "shared/form_join_event", :teams_array => teams_array %>
+				<% end %>
+			<% end %>
+
+
 			<%= render 'shared/text_hire' %>
 		</div>
 	</div>
