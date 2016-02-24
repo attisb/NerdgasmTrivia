@@ -11,6 +11,7 @@
 					
 					<ul class="no-pad no-bullet">
 						<li><h4><%= @user.first_name %></h4></li>
+						<li><strong>Score:</strong> <%= @user.scores.sum(:points)%></li>
 						<li><%= simple_format @user.description %></li>
 					</ul>
 				</div>
