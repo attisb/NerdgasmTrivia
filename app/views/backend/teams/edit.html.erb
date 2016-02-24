@@ -13,6 +13,9 @@
 		</div>
 		
 		<div class="c4">
+			<h5>Team Code</h5>
+			<h6 class="text-center"><%= @team.code -%></h6>
+			
 			<h5>Players</h5>
 			<ul>
 				<% @team.users.each do |user| %>
