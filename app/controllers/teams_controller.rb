@@ -22,6 +22,10 @@ class TeamsController < ApplicationController
       #end
   end
   
+  def show
+    @badges_teamscore = Badge.where(badge_type: 'scoret').where("trigger <= ?", @team.sum_score)
+  end
+  
   def new
     if current_user.teams.count >= ApplicationController::USER_MAX_CREATE_TEAMS
       redirect_to teams_path, alert: "Sorry you've hit the limit on the number of teams you can create."
