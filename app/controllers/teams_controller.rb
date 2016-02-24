@@ -72,8 +72,8 @@ class TeamsController < ApplicationController
     if @team.nil?
       redirect_to edit_user_registration_path, alert: 'We\'re sorry we can\'t find that team.'
     else
-      if @team.users.count >= ApplicationController::TEAM_MAX_MEMBERS
-        redirect_to edit_user_registration_path, alert: 'Sorry this team already has the max amount of players.'
+      if @team.users.count >= ApplicationController::TEAMMATE_MAX_MEMBERS
+        redirect_to edit_user_registration_path, alert: "Sorry to prevent abuse each team has a max of #{ApplicationController::TEAMMATE_MAX_MEMBERS} allowed team mates."
       else
         Teammate.find_or_create_by(user_id: current_user.id, team_id: @team.id)
         redirect_to edit_user_registration_path, notice: 'Awesomesauce! You\'ve joined the team.'

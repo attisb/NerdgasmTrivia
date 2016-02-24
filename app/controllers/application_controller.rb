@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   USER_MAX_TEAMS = 6
   USER_MAX_CREATE_TEAMS = 5
   TEAM_MAX_MEMBERS = 6
+  TEAMMATE_MAX_MEMBERS = 20
   BADGE_TYPES = [
     ["Events Played", "event"],
     ["User Score", "scoreu"],
