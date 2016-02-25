@@ -13,6 +13,14 @@
 					<%= simple_format @event.description %>
 				</div>
 			</div>
+			
+			<% if user_signed_in? %>
+			<div class="row">
+				<div class="c12">
+					<div class="fb-comments" data-href="<%= request.original_url -%>" data-width="100%" data-numposts="5"></div>
+				</div>
+			</div>
+			<% end %>
 		</div>
 
 		<div class="c4 h2push">
