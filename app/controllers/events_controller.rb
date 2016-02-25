@@ -20,8 +20,12 @@ class EventsController < ApplicationController
           if event_team_count >= ApplicationController::TEAM_MAX_MEMBERS
             redirect_to edit_user_registration_path, alert: 'Sorry this team already has the max amount of players.'
           else
-            Score.find_or_create_by(event_id: event.id, user_id: current_user.id, team_id: params[:team], points: event.bonus)
-            redirect_to root_path, notice: "Awesome! You have successfully joined the event."
+            if event.date_end.past?
+              redirect_to root_path, alert: "Ouch! Event has already past."
+            else
+              Score.find_or_create_by(event_id: event.id, user_id: current_user.id, team_id: params[:team], points: event.bonus)
+              redirect_to root_path, notice: "Awesome! You have successfully joined the event."
+            end
           end
         else
           redirect_to root_path, alert: "Ouch! You are already playing at this event."
