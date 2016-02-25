@@ -34,4 +34,11 @@ class ApplicationController < ActionController::Base
       @badges_eventscore = Badge.where(badge_type: 'event').where("trigger <= ?", @user.scores.count)
     end
     
+    def update_scores_by_internal
+      teams = Team.all
+      teams.each do |team|
+        team.update_attribute(:score, team.sum_score)
+      end
+    end
+    
 end

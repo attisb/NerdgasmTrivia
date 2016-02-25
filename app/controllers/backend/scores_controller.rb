@@ -12,13 +12,20 @@ class Backend::ScoresController < ApplicationController
       end
     end
     
+    update_scores_by_internal
+    
     redirect_to backend_event_path(params[:id]), notice: 'Updated scores'
   end
 
   def adjust_score
     score = Score.find(params[:score])
-    score.points = params[:new_point]
-    score.save
+    unless score.blank?
+      score.points = params[:new_point]
+      score.save
+    end
+    
+    update_scores_by_internal
+    
     redirect_to edit_backend_user_path(params[:user]), notice: 'Updated score for player.'
   end
   
