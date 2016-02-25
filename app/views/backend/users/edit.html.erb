@@ -14,7 +14,8 @@
 			<%= form_tag backend_adjust_score_path, :method => :post do %>
 			<input type="hidden" name="user" value="<%= @user.id -%>" />
 			<div class="row">
-				<div class="c12"><input type="tel" name="new_point" value="<%= @score.points -%>" class="form-input" /></div>
+				<div class="c10"><%= @score.event.name -%></div>
+				<div class="c2"><input type="tel" name="new_point" value="<%= @score.points -%>" class="form-input" /></div>
 			</div>
 			<div class="row">
 				<div class="c12"><input type="submit" value="Update Score" class="form-input" /></div>
