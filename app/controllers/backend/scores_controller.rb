@@ -19,7 +19,7 @@ class Backend::ScoresController < ApplicationController
     score = Score.find(params[:score])
     score.points = params[:new_point]
     score.save
-    redirect_to backend_user_path(params[:user]), notice: 'Updated score for player.'
+    redirect_to edit_backend_user_path(params[:user]), notice: 'Updated score for player.'
   end
   
 end
