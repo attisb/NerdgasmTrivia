@@ -16,6 +16,10 @@ class Backend::ScoresController < ApplicationController
   end
 
   def adjust_score
+    score = Score.find(params[:score])
+    score.points = params[:new_point]
+    score.save
+    redirect_to backend_user_path(params[:user]), notice: 'Updated score for player.'
   end
   
 end
