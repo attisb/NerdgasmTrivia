@@ -14,5 +14,8 @@ class Backend::ScoresController < ApplicationController
     
     redirect_to backend_event_path(params[:id]), notice: 'Updated scores'
   end
+
+  def adjust_score
+  end
   
 end

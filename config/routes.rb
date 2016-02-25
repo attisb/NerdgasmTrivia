@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/changelog', to: 'pages#changelog', as: 'changelog'
 
   get '/backend/update_scores', to: 'backend/teams#update_scores', as: 'backend_update_scores'
+  post '/backend/adjust_score', to: 'backend/scores#adjust_score', as: 'backend_adjust_score'
 
   get 'contact', to: 'pages#hire', as: 'contact'
   post 'contact', to: 'contacts#create'

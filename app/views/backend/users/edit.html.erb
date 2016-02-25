@@ -2,14 +2,24 @@
 	<div class="row">
 		<div class="c12">
 			<h4>User Management</h4>
-<%= form_for(@user, :url => backend_user_path, :method => :patch) do |f| %>
-<%= render 'form', :f => f %>
-
-<div class="row">
-	<div class="c12"><%= f.submit 'Update' %></div>
-</div>
-<% end %>
-
+			<%= form_for(@user, :url => backend_user_path, :method => :patch) do |f| %>
+			<%= render 'form', :f => f %>
+			<div class="row">
+				<div class="c12"><%= f.submit 'Update' %></div>
+			</div>
+			<% end %>
+			
+			<h5>Adjust Event Score</h5>
+			<p class="small">You are able to adjust only the last event that the guest has played. Once the event has past 3 days old it can no longer be modified.</p>
+			<%= form_tag backend_adjust_score_path, :method => :post do %>
+			<input type="hidden" name="user" value="<%= @user.id -%>" />
+			<div class="row">
+				<div class="c12"><input type="tel" name="new_point" value="<%= @score.points -%>" class="form-input" /></div>
+			</div>
+			<div class="row">
+				<div class="c12"><input type="submit" value="Update Score" class="form-input" /></div>
+			</div>
+			<% end %>
 		</div>
 	</div>
 </div>

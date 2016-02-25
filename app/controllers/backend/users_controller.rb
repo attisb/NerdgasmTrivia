@@ -13,6 +13,7 @@ class Backend::UsersController < ApplicationController
   end
   
   def edit
+    @score = Score.where(user_id: @user.id).order(created_at: :desc).first
   end
   
   def update
