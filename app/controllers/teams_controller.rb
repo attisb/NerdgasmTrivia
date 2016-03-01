@@ -74,13 +74,25 @@ class TeamsController < ApplicationController
   def join
     @team = Team.find_by(code: params[:code].downcase)
     if @team.nil?
-      redirect_to edit_user_registration_path, alert: 'We\'re sorry we can\'t find that team.'
+      if params[:speed]
+        redirect_to speed_path, alert: 'We\'re sorry we can\'t find that team.'
+      else
+        redirect_to edit_user_registration_path, alert: 'We\'re sorry we can\'t find that team.'
+      end
     else
       if @team.users.count >= ApplicationController::TEAMMATE_MAX_MEMBERS
-        redirect_to edit_user_registration_path, alert: "Sorry to prevent abuse each team has a max of #{ApplicationController::TEAMMATE_MAX_MEMBERS} allowed team mates."
+        if params[:speed]
+          redirect_to speed_path, alert: "Sorry to prevent abuse each team has a max of #{ApplicationController::TEAMMATE_MAX_MEMBERS} allowed team mates."
+        else
+          redirect_to edit_user_registration_path, alert: "Sorry to prevent abuse each team has a max of #{ApplicationController::TEAMMATE_MAX_MEMBERS} allowed team mates."
+        end
       else
         Teammate.find_or_create_by(user_id: current_user.id, team_id: @team.id)
-        redirect_to edit_user_registration_path, notice: 'Awesomesauce! You\'ve joined the team.'
+        if params[:speed]
+          redirect_to speed_path, notice: 'Awesomesauce! You\'ve joined the team.'
+        else
+          redirect_to edit_user_registration_path, notice: 'Awesomesauce! You\'ve joined the team.'
+        end
       end
     end
   end

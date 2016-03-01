@@ -7,6 +7,9 @@
 		<div class="c5">
 			<h4>Sign In</h4>
 			<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+			<% if params[:speed] %>
+			<%= hidden_field_tag 'speed', 'true' %>
+			<% end %>
 			<div class="row">
 				<div class="c12">
 				    <%= f.label :email %>

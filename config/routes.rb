@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'contact', to: 'pages#hire', as: 'contact'
   post 'contact', to: 'contacts#create'
+
+  get 'speed', to: 'speed#index', as: 'speed'
   
   root to: "pages#index"
 end

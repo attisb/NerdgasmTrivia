@@ -1,0 +1,76 @@
+<div class="grid">
+
+	<% unless user_signed_in? %>
+	<div class="row">
+		<div class="c12">
+			<h4>Join Nerdgasm</h4>
+			
+			<div class="row">
+				<div class="c12">
+					<%= link_to "Create Account", new_user_registration_path(:speed => true), :class => 'button full' %>
+					<br/><br/><br/>
+					<%= link_to "Sign In", new_user_session_path(:speed => true), :class => 'button full' %>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<% else %>
+		<div class="row">
+			<div class="c12">
+				<h4>Join Event</h4>
+				
+
+				<h5></h5>
+				<% teams_array = current_user.teams.map { |team| [team.name, team.id] } %>
+				<% if teams_array.empty? %>
+				<p>In order to join an event you must be part of a team. Please visit <%= link_to 'your account', edit_user_registration_path %> page to join a team.</p>
+				<% else %>
+					<%= render "shared/form_join_event", :teams_array => teams_array, :speed => 'true' %>
+				<% end %>
+				
+				<br/>
+
+				<h5>My Teams</h5>
+				<table>
+					<tbody>
+						<% current_user.teams.each do |team| %>
+						<tr>
+							<td><%= link_to team.name, team_path(team) %></td>
+							<td class="text-right"><%= team.scores.sum(:points) %></td>
+							<td class="text-right">
+								<% if team.user_id == current_user.id %>
+									<%= link_to 'Edit', edit_team_path(team) %> or
+									<%= link_to 'Leave', leave_team_path(team), data: { confirm: "Are you sure? You lose all points that you made while on this team!" } if team.users.map(&:id).include?(current_user.id) %>
+								<% else %>
+									<%= link_to 'Leave', leave_team_path(team), data: { confirm: "Are you sure? You lose all points that you made while on this team!" } if team.users.map(&:id).include?(current_user.id) %>
+								<% end %>
+							</td>
+						</tr>
+						<% end %>
+						<% if current_user.teams.count < ApplicationController::USER_MAX_TEAMS %>
+							<%= form_tag join_team_path() do %>
+							<%= hidden_field_tag 'speed', 'true' %>
+							<tr>
+								<td colspan="2"><input type="text" name="code" placeholder="enter team code" /></td>
+								<td><input type="submit" value="Join Team" /></td>
+							</tr>
+							<% end %>
+						<% end %>
+						<% if current_user.teams.count < ApplicationController::USER_MAX_CREATE_TEAMS %>
+						<tr><td colspan="3"><%= link_to 'Create a New Team', new_team_path(:speed => true), :class => 'button secondary full'%></td></tr>
+						<% end %>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="c12">
+				<%= link_to "Sign Out of Account", destroy_user_session_path(:speed => true), :method => :delete, :class => 'button full' %>
+			</div>
+		</div>
+	<% end %>
+
+</div>
