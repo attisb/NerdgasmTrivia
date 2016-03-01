@@ -9,7 +9,7 @@ class EventsController < ApplicationController
   end
   
   def join
-    event = Event.find_by(code: params[:code])
+    event = Event.find_by(code: params[:code].downcase)
     user = Score.find_by(event_id: event.id, user_id: current_user.id) unless event.nil?
     event_team_count = Score.where(event_id: event.id, team_id: params[:team]).count
     if user_signed_in? && (!current_user.admin? || !current_user.host?)

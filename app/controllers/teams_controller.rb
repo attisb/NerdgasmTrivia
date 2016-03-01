@@ -72,7 +72,7 @@ class TeamsController < ApplicationController
   end
 
   def join
-    @team = Team.find_by(code: params[:code])
+    @team = Team.find_by(code: params[:code].downcase)
     if @team.nil?
       redirect_to edit_user_registration_path, alert: 'We\'re sorry we can\'t find that team.'
     else
