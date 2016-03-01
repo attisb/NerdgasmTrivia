@@ -60,7 +60,7 @@ class Backend::EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:name, :description, :date_start, :date_end, :visible, :bonus)
+      params.require(:event).permit(:name, :description, :date_start, :date_end, :visible, :bonus, :user_id)
     end
 
 end

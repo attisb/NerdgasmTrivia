@@ -3,6 +3,7 @@ class Backend::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    @user_count = User.count
     if params[:s]
       @basic_users = User.where(admin: false, host: false).where('first_name LIKE :search OR last_name LIKE :search OR email LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(first_name: :asc)
     else      
