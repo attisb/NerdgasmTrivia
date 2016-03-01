@@ -4,12 +4,12 @@ class Backend::EventsController < ApplicationController
 
   def index
     if params[:s]
-      @events = Event.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page])
+      @events = Event.where('name LIKE :search', search: params[:s]).paginate(:page => params[:page]).order(date_start: :asc)
     else
-      @events = Event.where("date_start > ?", Time.now.beginning_of_day).paginate(:page => params[:page])
+      @events = Event.where("date_start > ?", Time.now.beginning_of_day).paginate(:page => params[:page]).order(date_start: :asc)
     end
 
-    @past_events = Event.where("date_start < ?", Time.now.beginning_of_day).limit(5)
+    @past_events = Event.where("date_start < ?", Time.now.beginning_of_day).limit(5).order(date_start: :asc)
   end
   
   def new
