@@ -37,7 +37,7 @@
 					</tr>
 					<tr>
 						<td>Events Played</td>
-						<td class="text-right"><%= @team.scores.group(:event_id).count(:event_id) %></td>
+						<td class="text-right"><%= @team.scores.group(:event_id).count %></td>
 					</tr>
 					<tr>
 						<td class="text-up">Team Members</td>
