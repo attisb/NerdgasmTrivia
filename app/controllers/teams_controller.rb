@@ -102,7 +102,7 @@ class TeamsController < ApplicationController
     if team.nil?
       redirect_to teams_path, alert: 'We\'re sorry we can\'t find that team'
     else
-      scores = Score.where(team_id: team.id)
+      scores = Score.where(team_id: team.id, user_id: current_user.id)
       teammates = Teammate.find_by(team_id: team.id, user_id: current_user.id)
       scores.destroy_all
       teammates.destroy unless teammates.nil?
