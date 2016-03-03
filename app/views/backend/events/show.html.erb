@@ -19,7 +19,7 @@
 					<% @event.teams.distinct.each do |team| %>
 					<tr>
 						<td class="u-full-width"><%= team.name %><abbr title="Playing:
-							<% team.scores.where(event_id: @event).each do |user| %>
+							<% team.scores.where(event_id: @event).users.each do |user| %>
 							<%= user.first_name %> <%= user.last_name %>.
 							<% end %>
 						">Mates</abbr></td>
