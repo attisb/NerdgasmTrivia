@@ -20,7 +20,10 @@
 					<% user_playing = Score.where(event_id: @event, team_id: team.id) -%>
 					<tr>
 						<td class="u-full-width"><%= team.name %> (<abbr title="Playing:
-							<%= user_playing.users.to_yaml %>
+							<% user_playing.each do |user| -%>
+							<% the_user = User.find(user.user_id) -%>
+							<%= the_user.first_name -%>
+							<% end -%>
 						">Mates</abbr>)</td>
 						<td class="u-full-width"><%= team.scores.where(event_id: @event).current_score %></td>
 						<td><%= telephone_field_tag "teams[#{team.id}][]", 0, :style => 'width: 100px;' %></td>
