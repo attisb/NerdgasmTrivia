@@ -17,7 +17,7 @@
 				</thead>
 				<tbody>
 					<% @event.teams.distinct.each do |team| %>
-					<% user_playing = Score.where(event_id: @event, team_id: team.id) -%>
+					<% user_playing = team.scores.where(event_id: @event) -%>
 					<tr>
 						<td class="u-full-width"><%= team.name %> (<abbr title="Playing:
 							<% user_playing.to_yaml %>
