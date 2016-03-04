@@ -19,9 +19,8 @@
 					<% @event.teams.distinct.each do |team| %>
 					<tr>
 						<td class="u-full-width"><%= team.name %><abbr title="Playing:
-							<% Score.where(event_id: @event, team_id: team.id).users.each do |user| %>
-							<%= user.first_name %> <%= user.last_name %>.
-							<% end %>
+							<% user_playing = team.scores.where(event_id: @event).users -%>
+							<%= user_playing %>
 						">Mates</abbr></td>
 						<td class="u-full-width"><%= team.scores.where(event_id: @event).current_score %></td>
 						<td><%= telephone_field_tag "teams[#{team.id}][]", 0, :style => 'width: 100px;' %></td>
