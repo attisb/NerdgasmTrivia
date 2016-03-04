@@ -17,12 +17,10 @@
 				</thead>
 				<tbody>
 					<% @event.teams.distinct.each do |team| %>
+					<% user_playing = Score.where(event_id: @event, team_id: team.id) -%>
 					<tr>
 						<td class="u-full-width"><%= team.name %> (<abbr title="Playing:
-							<% user_playing = Score.where(event_id: @event, team_id: team.id) -%>
-							<% user_playing.users.each do |user| %>
-								<%= user.first_name %>
-							<% end %>
+							<% user_playing.to_yaml %>
 						">Mates</abbr>)</td>
 						<td class="u-full-width"><%= team.scores.where(event_id: @event).current_score %></td>
 						<td><%= telephone_field_tag "teams[#{team.id}][]", 0, :style => 'width: 100px;' %></td>
