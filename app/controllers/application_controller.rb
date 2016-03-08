@@ -52,6 +52,8 @@ class ApplicationController < ActionController::Base
     def after_sign_out_path_for(resource)
       if params[:speed]
         speed_path
+      elsif go_speed
+        speed_path, notice: "Awesome! You have successfully joined the event."
       else
         super
       end

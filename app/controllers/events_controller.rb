@@ -37,6 +37,7 @@ class EventsController < ApplicationController
             else
               Score.find_or_create_by(event_id: event.id, user_id: current_user.id, team_id: params[:team], points: event.bonus)
               if params[:speed]
+                go_speed = true
                 sign_out current_user
                 redirect_to speed_path, notice: "Awesome! You have successfully joined the event."
               else
