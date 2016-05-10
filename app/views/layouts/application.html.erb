@@ -92,7 +92,13 @@
 				<%= link_to "Events", events_path %>
 				<%= link_to "Store", store_path %>
 				<%= link_to "Hire", hire_path %>
-				<%= link_to "Change Log", changelog_path %>
+				<% if user_signed_in? %>
+					<%= link_to "Your Account", edit_user_registration_path %>
+					<%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+				<% else %>
+					<%= link_to "Create Account", new_user_registration_path %>
+					<%= link_to "Sign In", new_user_session_path %>
+				<% end %>
 			</span>
 		</nav>
 		
