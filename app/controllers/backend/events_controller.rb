@@ -9,7 +9,7 @@ class Backend::EventsController < ApplicationController
       @events = Event.where("date_start > ?", Time.now.beginning_of_day).paginate(:page => params[:page]).order(date_start: :asc)
     end
 
-    @past_events = Event.where("date_start < ?", Time.now.beginning_of_day).limit(5).order(date_start: :asc)
+    @past_events = Event.where("date_start < ?", Time.now.beginning_of_day).limit(10).order(date_start: :desc)
   end
   
   def new
