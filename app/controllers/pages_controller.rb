@@ -4,6 +4,7 @@ class PagesController < ApplicationController
   end
   
   def store
+    redirect_to "https://nerdgasmapparel.com?trivia"
   end
   
   def hire
